@@ -49,73 +49,77 @@ function Overview() {
 
   return (
     <div className="overview-page">
-      <h2 className="overview-title">Energy Analytics Overview</h2>
-
-      <div className="stat-section">
-        <StatCard
-          title="Total Consumption"
-          value={`${stats["Total Consumption"]} kWh`}
-          Icon={FiZap}
-          color="#3B82F6"
-        />
-        <StatCard
-          title="Avg Efficiency"
-          value={`${stats["Avg Efficiency"]}%`}
-          Icon={FiActivity}
-          color="#10B981"
-        />
-        <StatCard
-          title="Active Alerts"
-          value={stats["Active Alerts"]}
-          Icon={MdWarning}
-          color="#EF4444"
-        />
-        <StatCard
-          title="Number of Generators"
-          value={stats["Number of Generators"]}
-          Icon={AiOutlineDatabase}
-          color="#F59E0B"
-        />
-        <StatCard
-          title="Number of Locations"
-          value={stats["Number of Locations"]}
-          Icon={GoLocation}
-          color="#6366F1"
-        />
+      <div className="header-row">
+        <h2 className="overview-title">Energy Analytics Overview</h2>
       </div>
 
-      {status && (
-        <div className="status-summary">
-          <h3 className="status-title">Generator Status Summary</h3>
-          <div className="status-row">
-            <StatusCard
-              label="Online"
-              value={status.Online}
-              color={STATUS_COLORS.Online}
-            />
-            <StatusCard
-              label="Standby"
-              value={status.Standby}
-              color={STATUS_COLORS.Standby}
-            />
-            <StatusCard
-              label="Fault"
-              value={status.Fault}
-              color={STATUS_COLORS.Fault}
-            />
-            <StatusCard
-              label="Warning"
-              value={status.Warning}
-              color={STATUS_COLORS.Warning}
-            />
-            <StatusCard
-              label="Total"
-              value={status.Total}
-              color={STATUS_COLORS.Total}
-            />
-          </div>
+      <div className="overview-top-row">
+        <div className="stat-section">
+          <StatCard
+            title="Total Consumption"
+            value={`${stats["Total Consumption"]} kWh`}
+            Icon={FiZap}
+            color="#3B82F6"
+          />
+          <StatCard
+            title="Avg Efficiency"
+            value={`${stats["Avg Efficiency"]}%`}
+            Icon={FiActivity}
+            color="#10B981"
+          />
+          <StatCard
+            title="Active Alerts"
+            value={stats["Active Alerts"]}
+            Icon={MdWarning}
+            color="#EF4444"
+          />
+          <StatCard
+            title="Number of Generators"
+            value={stats["Number of Generators"]}
+            Icon={AiOutlineDatabase}
+            color="#F59E0B"
+          />
+          <StatCard
+            title="Number of Locations"
+            value={stats["Number of Locations"]}
+            Icon={GoLocation}
+            color="#6366F1"
+          />
         </div>
-      )}
+
+        {status && (
+          <div className="status-summary">
+            <h3 className="status-title">Generator Status Summary</h3>
+            <div className="status-row">
+              <StatusCard
+                label="Online"
+                value={status.Online}
+                color={STATUS_COLORS.Online}
+              />
+              <StatusCard
+                label="Standby"
+                value={status.Standby}
+                color={STATUS_COLORS.Standby}
+              />
+              <StatusCard
+                label="Fault"
+                value={status.Fault}
+                color={STATUS_COLORS.Fault}
+              />
+              <StatusCard
+                label="Warning"
+                value={status.Warning}
+                color={STATUS_COLORS.Warning}
+              />
+              <StatusCard
+                label="Total"
+                value={status.Total}
+                color={STATUS_COLORS.Total}
+              />
+            </div>
+          </div>
+        )}
+      </div>
 
       {genLocations.length > 0 && (
         <div className="locations-section">

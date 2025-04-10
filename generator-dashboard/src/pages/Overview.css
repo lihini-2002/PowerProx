@@ -1,56 +1,76 @@
 /* src/pages/Overview.css */
 
 .overview-page {
-    padding: 2rem;
-  }
-  
-  .overview-title {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-  }
-  
-  .stat-section {
-    display: flex;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-bottom: 2.5rem;
-  }
-  
-  .status-summary {
-    background-color: #1e3a8a;
-    padding: 1.5rem;
-    border-radius: 16px;
-    color: white;
-    margin-bottom: 2.5rem;
-  }
-  
-  .status-title {
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    font-weight: 500;
-  }
-  
-  .status-row {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  
-  .locations-section {
-    margin-top: 2rem;
-  }
-  
-  .locations-title {
-    color: white;
-    margin-bottom: 1rem;
-  }
-  
-  .locations-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
+  background-color: #0f172a; /* dark blue */
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.header-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.overview-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.overview-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 2rem;
+}
+
+
+.stat-section {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  max-width: calc(100% - 350px); /* give space for status box */
+}
+
+.status-summary {
+  background-color: #152444;
+  padding: 1.5rem;
+  border-radius: 16px;
+  color: white;
+  width: fit-content;
+  min-width: 320px;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+
+.status-title {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.status-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.locations-section {
+  margin-top: 2.5rem;
+}
+
+.locations-title {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.locations-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
