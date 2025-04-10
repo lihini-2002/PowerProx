@@ -1,0 +1,37 @@
+/* src/components/LocationCard.css */
+.location-card {
+    background-color: #1f2937;
+    border-radius: 12px;
+    padding: 1.2rem;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    min-width: 300px;
+    flex: 1;
+  }
+  
+  .location-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .sub-title {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin: 0;
+  }
+  
+  .power-info {
+    text-align: right;
+  }
+  
+  .power-info span {
+    display: block;
+    font-size: 0.9rem;
+  }
+  
+  .efficiency {
+    color: #10b981;
+    font-weight: bold;
+  }
+  
