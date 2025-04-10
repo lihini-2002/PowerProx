@@ -1,20 +1,40 @@
-import { Link } from "react-router-dom";
+// src/components/Navbar.jsx
+import { NavLink } from "react-router-dom";
+import { FiGrid, FiMapPin, FiBell, FiPower, FiCpu } from "react-icons/fi";
+import logo from "../assets/logo.png"; // place your logo image in src/assets/logo.png
+import "./Navbar.css";
 
 function Navbar() {
   return (
-    <nav style={{ padding: "10px", background: "#222", color: "#fff" }}>
-      <Link to="/" style={{ margin: "0 10px" }}>
-        Overview
-      </Link>
-      <Link to="/generators" style={{ margin: "0 10px" }}>
-        Generators
-      </Link>
-      <Link to="/locations" style={{ margin: "0 10px" }}>
-        Locations
-      </Link>
-      <Link to="/alarms" style={{ margin: "0 10px" }}>
-        Alarms
-      </Link>
+    <nav className="navbar">
+      <div className="navbar-left">
+        <img src={logo} alt="PowerProx Logo" className="navbar-logo" />
+        <span className="navbar-title">PowerProx Dashboard</span>
+      </div>
+      <div className="navbar-links">
+        <NavLink to="/" className="nav-item">
+          <FiGrid size={16} />
+          <span>Overview</span>
+        </NavLink>
+        <NavLink to="/generators" className="nav-item">
+          <FiCpu size={16} />
+          <span>Generators</span>
+        </NavLink>
+        <NavLink to="/locations" className="nav-item">
+          <FiMapPin size={16} />
+          <span>Locations</span>
+        </NavLink>
+        <NavLink to="/alarms" className="nav-item">
+          <FiBell size={16} />
+          <span>Alarms</span>
+        </NavLink>
+      </div>
+      <div className="navbar-right">
+        <button className="logout-btn">
+          <FiPower size={16} />
+          <span>Logout</span>
+        </button>
+      </div>
     </nav>
   );
 }

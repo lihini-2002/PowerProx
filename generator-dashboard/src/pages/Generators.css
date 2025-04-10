@@ -1,0 +1,45 @@
+/* src/pages/Generators.css */
+
+.generators-page {
+    background-color: #0f172a;
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  
+  .generators-title {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+  
+  .generator-location-section {
+    margin-bottom: 2.5rem;
+  }
+  
+  .location-heading {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .generator-cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .generator-card {
+    background-color: #1f2937;
+    color: white;
+    border-radius: 12px;
+    padding: 1rem;
+    width: 240px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    font-size: 0.9rem;
+  }
+  
+  .generator-card p {
+    margin: 0.4rem 0;
+  }
+  
