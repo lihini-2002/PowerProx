@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import StatCard from "../components/StatCard";
+import StatusCard from "../components/StatusCard";
+import LocationCard from "../components/LocationCard";
 import { fetchOrganizedData } from "../services/api";
 
 // Icons from react-icons
@@ -10,20 +12,29 @@ import { MdWarning } from "react-icons/md";
 import { AiOutlineDatabase } from "react-icons/ai";
 import { GoLocation } from "react-icons/go";
 
+// Define colors for each status type
+const STATUS_COLORS = {
+  Online: "#10B981",
+  Standby: "#3B82F6",
+  Fault: "#EF4444",
+  Warning: "#F59E0B",
+  Total: "#6366F1",
+};
+
 function Overview() {
   const [stats, setStats] = useState(null);
+  const [status, setStatus] = useState(null);
+  const [genLocations, setGenLocations] = useState([]);
 
   // Fetch latest data every 10 seconds
   useEffect(() => {
     const loadData = async () => {
       const result = await fetchOrganizedData();
-
-      // Check if the result is not null
       if (result) {
-        const { overallStats } = result;
+        const { overallStats, generatorStatus, GenLocations } = result;
         setStats(overallStats);
-      } else {
-        console.warn("Failed to fetch organized data");
+        setStatus(generatorStatus);
+        setGenLocations(GenLocations);
       }
     };
 
@@ -72,6 +83,65 @@ function Overview() {
           color="#6366F1"
         />
       </div>
+      {status && (
+        <div
+          style={{
+            backgroundColor: "#1e3a8a",
+            padding: "1.5rem",
+            borderRadius: "16px",
+            marginTop: "2rem",
+            color: "white",
+          }}
+        >
+          <h3 style={{ marginBottom: "1rem" }}>Generator Status Summary</h3>
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+            <StatusCard
+              label="Online"
+              value={status.Online}
+              color={STATUS_COLORS.Online}
+            />
+            <StatusCard
+              label="Standby"
+              value={status.Standby}
+              color={STATUS_COLORS.Standby}
+            />
+            <StatusCard
+              label="Fault"
+              value={status.Fault}
+              color={STATUS_COLORS.Fault}
+            />
+            <StatusCard
+              label="Warning"
+              value={status.Warning}
+              color={STATUS_COLORS.Warning}
+            />
+            <StatusCard
+              label="Total"
+              value={status.Total}
+              color={STATUS_COLORS.Total}
+            />
+          </div>
+        </div>
+      )}
+      {genLocations.length > 0 && (
+        <div style={{ marginTop: "2rem" }}>
+          <h3 style={{ color: "white", marginBottom: "1rem" }}>
+            Generator Locations
+          </h3>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+            {genLocations.map((loc, index) => (
+              <LocationCard
+                key={index}
+                location={loc.location}
+                kWh={loc.kWh}
+                efficiency={loc.efficiency}
+                rooms={loc.rooms}
+                gencount={loc.gencount}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
