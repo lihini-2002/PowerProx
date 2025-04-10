@@ -1,10 +1,11 @@
-//this is the main landing page(the main dashboard)
+// src/pages/Overview.jsx
 
 import React, { useEffect, useState } from "react";
 import StatCard from "../components/StatCard";
 import StatusCard from "../components/StatusCard";
 import LocationCard from "../components/LocationCard";
 import { fetchOrganizedData } from "../services/api";
+import "./Overview.css";
 
 // Icons from react-icons
 import { FiZap, FiActivity } from "react-icons/fi";
@@ -47,11 +48,10 @@ function Overview() {
   if (!stats) return <p style={{ color: "white" }}>Loading...</p>;
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2 style={{ color: "white", marginBottom: "1.5rem" }}>
-        Energy Analytics Overview
-      </h2>
-      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+    <div className="overview-page">
+      <h2 className="overview-title">Energy Analytics Overview</h2>
+
+      <div className="stat-section">
         <StatCard
           title="Total Consumption"
           value={`${stats["Total Consumption"]} kWh`}
@@ -83,18 +83,11 @@ function Overview() {
           color="#6366F1"
         />
       </div>
+
       {status && (
-        <div
-          style={{
-            backgroundColor: "#1e3a8a",
-            padding: "1.5rem",
-            borderRadius: "16px",
-            marginTop: "2rem",
-            color: "white",
-          }}
-        >
-          <h3 style={{ marginBottom: "1rem" }}>Generator Status Summary</h3>
-          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+        <div className="status-summary">
+          <h3 className="status-title">Generator Status Summary</h3>
+          <div className="status-row">
             <StatusCard
               label="Online"
               value={status.Online}
@@ -123,12 +116,11 @@ function Overview() {
           </div>
         </div>
       )}
+
       {genLocations.length > 0 && (
-        <div style={{ marginTop: "2rem" }}>
-          <h3 style={{ color: "white", marginBottom: "1rem" }}>
-            Generator Locations
-          </h3>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+        <div className="locations-section">
+          <h3 className="locations-title">Generator Locations</h3>
+          <div className="locations-grid">
             {genLocations.map((loc, index) => (
               <LocationCard
                 key={index}

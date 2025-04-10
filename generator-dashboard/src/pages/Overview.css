@@ -1,0 +1,56 @@
+/* src/pages/Overview.css */
+
+.overview-page {
+    padding: 2rem;
+  }
+  
+  .overview-title {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  
+  .stat-section {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 2.5rem;
+  }
+  
+  .status-summary {
+    background-color: #1e3a8a;
+    padding: 1.5rem;
+    border-radius: 16px;
+    color: white;
+    margin-bottom: 2.5rem;
+  }
+  
+  .status-title {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .status-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .locations-section {
+    margin-top: 2rem;
+  }
+  
+  .locations-title {
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .locations-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
