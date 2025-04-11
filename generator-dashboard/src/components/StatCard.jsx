@@ -4,7 +4,7 @@ import "./StatCard.css";
 
 function StatCard({ title, value, Icon }) {
   return (
-    <div className="stat-card">
+    <div className="stat-card fade-in">
       <div className="stat-icon">
         <Icon size={20} color="#6b7280" />
       </div>
