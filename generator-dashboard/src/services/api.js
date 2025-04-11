@@ -11,30 +11,28 @@ export async function fetchOrganizedData() {
     const rawData = json.data;
 
     // -------------------------
-    // 1. OverallStats (latest one)
+    // 1. OverallStats (all matching entries)
     // -------------------------
-    const overallStats = [...rawData]
-      .reverse()
-      .find(item =>
+    const overallStats = rawData.filter(
+      item =>
         item["Active Alerts"] !== undefined &&
         item["Avg Efficiency"] !== undefined &&
         item["Number of Generators"] !== undefined &&
         item["Number of Locations"] !== undefined &&
         item["Total Consumption"] !== undefined
-      );
+    );
 
     // -------------------------
-    // 2. Generator Status (latest one)
+    // 2. Generator Status (all matching entries)
     // -------------------------
-    const generatorStatus = [...rawData]
-      .reverse()
-      .find(item =>
+    const generatorStatus = rawData.filter(
+      item =>
         item.Fault !== undefined &&
         item.Online !== undefined &&
         item.Standby !== undefined &&
         item.Total !== undefined &&
         item.Warning !== undefined
-      );
+    );
 
     // -------------------------
     // 3. GenLocations (unique by location with most recent entry)
