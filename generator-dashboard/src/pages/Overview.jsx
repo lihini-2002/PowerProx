@@ -1,6 +1,6 @@
 // src/pages/Overview.jsx
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import StatCard from "../components/StatCard";
 import StatusCard from "../components/StatusCard";
 import LocationCard from "../components/LocationCard";
@@ -23,27 +23,46 @@ const STATUS_COLORS = {
 };
 
 function Overview() {
+  const [statsArray, setStatsArray] = useState([]);
+  const [statusArray, setStatusArray] = useState([]);
   const [stats, setStats] = useState(null);
   const [status, setStatus] = useState(null);
   const [genLocations, setGenLocations] = useState([]);
+  const statIndex = useRef(0);
+  const statusIndex = useRef(0);
 
-  // Fetch latest data every 10 seconds
   useEffect(() => {
     const loadData = async () => {
       const result = await fetchOrganizedData();
       if (result) {
         const { overallStats, generatorStatus, GenLocations } = result;
-        setStats(overallStats);
-        setStatus(generatorStatus);
+        setStatsArray(overallStats);
+        setStatusArray(generatorStatus);
         setGenLocations(GenLocations);
+        setStats(overallStats[0]);
+        setStatus(generatorStatus[0]);
       }
     };
 
-    loadData(); // Initial fetch
-    const interval = setInterval(loadData, 10000); // every 10 sec
-
-    return () => clearInterval(interval); // cleanup on unmount
+    loadData();
+    const interval = setInterval(loadData, 5 * 60 * 1000); // every 5 minutes
+    return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const rotateStats = setInterval(() => {
+      if (statsArray.length > 0) {
+        statIndex.current = (statIndex.current + 1) % statsArray.length;
+        setStats(statsArray[statIndex.current]);
+      }
+      if (statusArray.length > 0) {
+        statusIndex.current = (statusIndex.current + 1) % statusArray.length;
+        setStatus(statusArray[statusIndex.current]);
+      }
+    }, 10000); // every 10 seconds
+
+    return () => clearInterval(rotateStats);
+  }, [statsArray, statusArray]);
 
   if (!stats) return <p style={{ color: "white" }}>Loading...</p>;
 
